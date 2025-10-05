@@ -1,270 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>McDonald's Pakistan </title>
+
+<
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<style>
+  :root{
+    --mc-yellow:#ffc72c;
+    --mc-red:#da291c;
+    --mc-dark:#292929;
+    --mc-muted:#6c757d;
+    --mc-light:#f8f9fa;
+  }
+  body{font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;}
   
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  .top-strip{background:#fff; font-size:.9rem; border-bottom:2px solid #fff;}
+  .top-strip a{color:#000; text-decoration:none;}
+  .logo{height:28px;}
+  .navbar-brand img{height:34px;}
+
+ 
+  .hero-slide{
+    min-height:360px;
+    border-radius:.5rem;
+    overflow:hidden;
+    position:relative;
+  }
+  .hero-overlay{background:linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 60%, rgba(0,0,0,0) 100%);}
+  .hero-card{max-width:320px; background:#fff; border-radius:.5rem;}
+  .btn-mc{background:var(--mc-yellow); border:none; color:#000; font-weight:600;}
+  .btn-mc:hover{filter:brightness(.95);} 
+  /* Make outline buttons in feature cards yellow */
+  .feature-card .btn-outline-dark{background:var(--mc-yellow); border-color:var(--mc-yellow); color:#000; font-weight:600;}
+  .feature-card .btn-outline-dark:hover{filter:brightness(.95); color:#000;}
+  .hero-img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+
   
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  .feature-card{border:1px solid #eee; border-radius:.5rem;}
+  .feature-card .thumb{height:140px; background:#eee; border-top-left-radius:.5rem; border-top-right-radius:.5rem; overflow:hidden;}
+  .feature-card .thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+  .feature-card .card-body{min-height:150px;}
+
   
-  <!-- AOS CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  .footer{background:#fff; border-top:1px solid #e9ecef;}
+  .footer h6{font-weight:700;}
+  .copy{color:var(--mc-muted); font-size:.9rem;}
 
-  <!-- Custom CSS -->
-  <style>
-    body {
-      scroll-behavior: smooth;
-    }
+  
+  .rounded-12{border-radius:12px;}
+  .shadow-soft{box-shadow: 0 6px 18px rgba(0,0,0,.08);}  
 
-    /* Sticky Frosted Navbar */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      background-color: rgba(0, 0, 0, 0.55) !important;
-      font-size: 1.1rem;
-      font-weight: 500;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      transition: background-color 0.4s ease;
-    }
-
-    .navbar.scrolled {
-      background-color: rgba(0, 0, 0, 0.85) !important;
-      transition: background-color 0.4s ease;
-    }
-
-    .navbar .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .navbar-brand {
-      font-size: 1.7rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: #ffc107 !important;
-      margin-right: 1rem;
-    }
-
-    .navbar-nav {
-      display: flex;
-      align-items: center;
-    }
-
-    .navbar-nav .nav-link {
-      padding: 0.6rem 1rem;
-      color: #f8f9fa !important;
-      transition: all 0.3s ease;
-      line-height: 1.2;
-    }
-
-    .navbar-nav .nav-link.nav-home {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #ffc107 !important;
-    }
-
-    .navbar-nav .nav-link:hover {
-      color: #ffc107 !important;
-      text-decoration: underline;
-    }
-
-    .hero {
-      height: 100vh;
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                  url('https://picsum.photos/1600/900') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: bold;
-    }
-
-    /* Prominent portfolio button */
-    .btn-portfolio {
-      font-size: 1.25rem;
-      padding: 0.9rem 1.6rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .btn-portfolio:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
-    }
-
-    .footer {
-      background: #222;
-      color: #fff;
-      padding: 20px 0;
-      text-align: center;
-    }
-
-    .footer i {
-      color: red;
-    }
-  </style>
+  
+  @media (min-width:992px){
+    .hero-slide{min-height:420px;}
+  }
+</style>
 </head>
-
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">MyPortfolio</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+
+<div class="top-strip py-1">
+  <div class="container d-flex align-items-center justify-content-between gap-3">
+    <div class="d-flex align-items-center gap-3">
+      <a class="d-inline-flex align-items-center" href="#">
+        <img class="logo" src="./download.jpg" alt="McDonald's">
+      </a>
+      <div class="d-none d-md-flex align-items-center gap-3">
+        <a href="#">Careers</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <a class="text-dark d-none d-md-inline" href="#"><i class="bi bi-search"></i> Search</a>
+      <a class="text-dark d-none d-md-inline" href="#"><i class="bi bi-geo-alt"></i> Locate Me</a>
+      <a class="btn btn-sm btn-mc" href="#">Order on McDelivery</a>
+    </div>
+  </div>
+  </div>
+
+
+<nav class="navbar navbar-expand-lg bg-white border-bottom">
+  <div class="container">
+    <a class="navbar-brand d-lg-none" href="#">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/McDonald%27s_Golden_Arches.svg" alt="Mc" />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Our Menu</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#menu">Breakfast</a></li>
+            <li><a class="dropdown-item" href="#menu">Beef</a></li>
+            <li><a class="dropdown-item" href="#menu">Chicken &amp; Fish</a></li>
+            <li><a class="dropdown-item" href="#menu">Crispy Chicken</a></li>
+            <li><a class="dropdown-item" href="#menu">Wraps</a></li>
+            <li><a class="dropdown-item" href="#menu">Happy Meals</a></li>
+            <li><a class="dropdown-item" href="#menu">Extra Value Meals</a></li>
+            <li><a class="dropdown-item" href="#menu">Fries &amp; Sides</a></li>
+            <li><a class="dropdown-item" href="#menu">Desserts</a></li>
+            <li><a class="dropdown-item" href="#menu">Beverages</a></li>
+            <li><a class="dropdown-item" href="#menu">McCafé</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#">About Our Food</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Your Right To Know</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Our App</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Family</a></li>
+        <li class="nav-item"><a class="nav-link" href="#trending">Trending Now</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Rounding Up</a></li>
+      </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<section class="py-3 py-lg-4 bg-light">
+  <div class="container">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        
+        <div class="carousel-item active">
+          <div class="hero-slide p-3 p-md-4">
+            <img class="hero-img" src="./BIC-25-D.png" alt="Crispy Chicken" referrerpolicy="no-referrer">
+            <div class="position-absolute top-0 start-0 w-100 h-100 hero-overlay"></div>
+            <div class="position-relative text-white d-flex align-items-center h-100">
+              <div class="hero-card p-3 p-md-4 shadow-soft">
+                <h5 class="text-danger mb-1">Baj Gaya Band... Mehngai Ka!</h5>
+                <p class="text-muted mb-2">Crispy Chicken now just Rs. 250 per piece.</p>
+                <a class="btn btn-mc" href="#">Order Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+        <div class="carousel-item">
+          <div class="hero-slide p-3 p-md-4">
+            <img class="hero-img" src="./BigMac-25-D.png" alt="Big Mac burger" referrerpolicy="no-referrer">
+            <div class="position-absolute top-0 start-0 w-100 h-100 hero-overlay"></div>
+            <div class="position-relative text-white d-flex align-items-center h-100">
+              <div class="hero-card p-3 p-md-4 shadow-soft">
+                <h5 class="mb-1">Beef Up, Price Down!</h5>
+                <p class="text-muted mb-2">The legendary Big Mac Regular Meal is now for just Rs. 995. Valid for a limited time only.</p>
+                <a class="btn btn-mc" href="#">Order Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="carousel-item">
+          <div class="hero-slide p-3 p-md-4">
+            <img class="hero-img" src="./Sundae-CB-1170X520.png" alt="Strawberry Sundae" referrerpolicy="no-referrer">
+            <div class="position-absolute top-0 start-0 w-100 h-100 hero-overlay"></div>
+            <div class="position-relative text-white d-flex align-items-center h-100">
+              <div class="hero-card p-3 p-md-4 shadow-soft">
+                <h5 class="mb-1">Berry Sweet News!</h5>
+                <p class="text-muted mb-2">Strawberry Sundae now for just Rs. 350.</p>
+                <a class="btn btn-mc" href="#">Order Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link nav-home" href="#hero">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<section class="py-4">
+  <div class="container">
+    <div class="row g-3 g-lg-4">
+      
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="feature-card h-100 bg-white">
+          <div class="thumb">
+            <img src="./mccafe-dsk-en.jpg" alt="McCafé coffee" referrerpolicy="no-referrer">
+          </div>
+          <div class="card-body p-4">
+            <h5 class="card-title">McCafé</h5>
+            <p class="card-text text-muted">Browse our menu for tasty coffee and espresso drinks.</p>
+            <a class="btn btn-mc" href="#">Order Now</a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="feature-card h-100 bg-white">
+          <div class="thumb">
+            <img src="./mcdelivery-574x249-en.jpg" alt="McDelivery fries and bag" referrerpolicy="no-referrer">
+          </div>
+          <div class="card-body p-4">
+            <h5 class="card-title">McDelivery</h5>
+            <p class="card-text text-muted">Delivering food at your doorsteps.</p>
+            <a class="btn btn-mc" href="#">Order Now</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="feature-card h-100 bg-white">
+          <div class="thumb">
+            <img src="./uae-our-app-feature-callout-desktop.jpg" alt="McDonald's App on phone" referrerpolicy="no-referrer">
+          </div>
+          <div class="card-body p-4">
+            <h5 class="card-title">Our App</h5>
+            <p class="card-text text-muted">McDonald's in your pocket.</p>
+            <a class="btn btn-mc" href="#">Download Now</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="feature-card h-100 bg-white">
+          <div class="thumb">
+            <img src="./item-4.png" alt="Burger menu" referrerpolicy="no-referrer">
+          </div>
+          <div class="card-body p-4">
+            <h5 class="card-title">Our Menu</h5>
+            <p class="card-text text-muted">Our exclusive menu is waiting for you.</p>
+            <a class="btn btn-mc" href="#menu">Order Now</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-12 col-md-6 col-lg-4" id="trending">
+        <div class="feature-card h-100 bg-white">
+          <div class="thumb">
+            <img src="./item-5.png" alt="McDonald's storefront" referrerpolicy="no-referrer">
+          </div>
+          <div class="card-body p-4">
+            <h5 class="card-title">Trending Now</h5>
+            <p class="card-text text-muted">Find out what's new.</p>
+            <a class="btn btn-outline-dark" href="#">Learn More</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="feature-card h-100 bg-white">
+          <div class="thumb">
+            <img src="./careers-info-card-1.png" alt="Restaurant crew careers" referrerpolicy="no-referrer">
+          </div>
+          <div class="card-body p-4">
+            <h5 class="card-title">Careers</h5>
+            <p class="card-text text-muted">Be a part of our team.</p>
+            <a class="btn btn-outline-dark" href="#">Apply Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+
+<footer class="footer pt-4 pb-5 mt-2">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-6 col-md-3">
+        <h6>Our Company</h6>
+        <ul class="list-unstyled small">
+          <li><a class="text-decoration-none text-dark" href="#">Our Community</a></li>
+          <li><a class="text-decoration-none text-dark" href="#">Our Journey</a></li>
+          <li><a class="text-decoration-none text-dark" href="#">Our History</a></li>
+          <li><a class="text-decoration-none text-dark" href="#">Social Impact</a></li>
         </ul>
       </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section id="hero" class="hero">
-    <div class="container" data-aos="zoom-in">
-      <h1> Portfolio website <span class="text-warning">Bilal Chaudhry</span></h1>
-      <p class="lead">Frontend web-developer and SEO expert</p>
-      <a href="#projects" class="btn btn-primary btn-lg mt-3 btn-portfolio"><i class="fas fa-briefcase"></i> View My Work</a>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-5">
-    <div class="container" data-aos="fade-up">
-      <div class="row align-items-center">
-        <div class="col-md-6 text-center">
-          <img src="./WhatsApp Image 2025-10-04 at 9.43.44 AM.jpeg" class="img-fluid rounded-circle" alt="Profile">
-        </div>
-        <div class="col-md-6">
-          <h2>About Me</h2>
-          <p>I am a passionate Front-End Web Developer with expertise in building responsive and user-friendly websites.
-My skills include HTML, CSS, JavaScript, Bootstrap, and modern frameworks to craft interactive designs.
-Alongside development, I specialize in SEO optimization, helping websites rank higher and reach more people.
-I love turning creative ideas into digital solutions that enhance user experience.
-My goal is to grow as a developer while helping businesses build a strong online presence.</p>
-          <h5>Skills:</h5>
-          <ul class="list-inline">
-            <li class="list-inline-item badge bg-primary">HTML</li>
-            <li class="list-inline-item badge bg-success">CSS</li>
-            <li class="list-inline-item badge bg-warning">JavaScript</li>
-            <li class="list-inline-item badge bg-info">Bootstrap</li>
-          </ul>
+      <div class="col-6 col-md-3">
+        <h6>Careers</h6>
+        <ul class="list-unstyled small">
+          <li><a class="text-decoration-none text-dark" href="#">Corporate</a></li>
+          <li><a class="text-decoration-none text-dark" href="#">Restaurant</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>Contact us</h6>
+        <ul class="list-unstyled small">
+          <li><a class="text-decoration-none text-dark" href="#">Suggestion</a></li>
+          <li><a class="text-decoration-none text-dark" href="#">Complaint</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-3">
+        <h6>NewsRoom</h6>
+        <ul class="list-unstyled small">
+          <li><a class="text-decoration-none text-dark" href="#">Local</a></li>
+        </ul>
+        <div class="d-flex gap-2 mt-2">
+          <a class="text-dark fs-5" href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a class="text-dark fs-5" href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+          <a class="text-dark fs-5" href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a class="text-dark fs-5" href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-5 bg-light">
-    <div class="container" data-aos="fade-right">
-      <h2 class="text-center mb-4"><b>My Projects</b></h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card shadow-sm">
-            <img src="./Screenshot 2025-10-04 094831.png" class="card-img-top" alt="Project 1">
-            <div class="card-body">
-              <h5 class="card-title"></h5>
-              <p class="card-text">This is recipe website which bieng going through seo </p>
-              <a href="https://cowboybutterrecipe.com/" class="btn btn-outline-primary">View</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card shadow-sm">
-            <img src="./Screenshot 2025-10-04 095729.png" class="card-img-top" alt="Project 2">
-            <div class="card-body">
-              <h5 class="card-title"> </h5>
-              <p class="card-text">Its an coding instructure ai agent trained on coding data</p>
-              <a href="https://codinginstructorbilal.netlify.app/" class="btn btn-outline-primary">View</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card shadow-sm">
-            <img src="./image.png" class="card-img-top" alt="">
-            <div class="card-body">
-              <h5 class="card-title"></h5>
-              <p class="card-text">Youtube app which is bieng created on html</p>
-              <a href="https://youtubebilal.netlify.app/" class="btn btn-outline-primary">View</a>
-            </div>
-          </div>
-        </div>
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mt-4 pt-3 border-top">
+      <div class="d-flex align-items-center gap-2">
+        <img src="./download.jpg" alt="logo" style="height:16px;">
+        <small class="copy">©2025 McDonald's. All Rights Reserved.</small>
       </div>
+      <ul class="list-inline m-0 small">
+        <li class="list-inline-item"><a class="text-decoration-none text-dark" href="#">Contact</a></li>
+        <li class="list-inline-item"><a class="text-decoration-none text-dark" href="#">Privacy Policy</a></li>
+        <li class="list-inline-item"><a class="text-decoration-none text-dark" href="#">Terms &amp; Conditions</a></li>
+      </ul>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-5">
-    <div class="container" data-aos="fade-left">
-      <h2 class="text-center mb-4">Contact Me</h2>
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <form>
-            <div class="mb-3">
-              <label class="form-label">Name</label>
-              <input type="text" class="form-control" placeholder="Enter your name">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control" placeholder="Enter your email">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Message</label>
-              <textarea class="form-control" rows="5" placeholder="Write your message"></textarea>
-            </div>
-            <button class="btn btn-primary w-100"><i class="fas fa-paper-plane"></i> Send</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2025 My Portfolio <i class="fas fa-heart"></i> </p>
-  </footer>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- AOS JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
-
-    // Change navbar background when scrolling
-    window.addEventListener("scroll", function() {
-      const navbar = document.querySelector(".navbar");
-      if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-      } else {
-        navbar.classList.remove("scrolled");
-      }
-    });
-  </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
+
 
