@@ -1,335 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>McDonald's Pakistan </title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Exercises Hub</title>
+  <style>
+    /* --- Base Styles --- */
+    * {
+      box-sizing: border-box;
+    }
 
-<
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      background-size: 200% 200%;
+      animation: bgMove 10s infinite alternate;
+    }
 
+    @keyframes bgMove {
+      0% { background-position: left; }
+      100% { background-position: right; }
+    }
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    /* --- Container --- */
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      width: 360px;
+      transition: transform 0.3s ease;
+    }
 
-<style>
-  :root{
-    --mc-yellow:#ffc72c;
-    --mc-red:#da291c;
-    --mc-dark:#292929;
-    --mc-muted:#6c757d;
-    --mc-light:#f8f9fa;
-  }
-  body{font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;}
-  
-  .top-strip{background:#fff; font-size:.9rem; border-bottom:2px solid #fff;}
-  .top-strip a{color:#000; text-decoration:none;}
-  .logo{height:28px;}
-  .navbar-brand img{height:34px;}
+    .container:hover {
+      transform: translateY(-5px);
+    }
 
- 
-  .hero-slide{
-    min-height:360px;
-    border-radius:.5rem;
-    overflow:hidden;
-    position:relative;
-  }
-  .hero-overlay{background:linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 60%, rgba(0,0,0,0) 100%);}
-  .hero-card{max-width:320px; background:#fff; border-radius:.5rem;}
-  .btn-mc{background:var(--mc-yellow); border:none; color:#000; font-weight:600;}
-  .btn-mc:hover{filter:brightness(.95);} 
-  /* Make outline buttons in feature cards yellow */
-  .feature-card .btn-outline-dark{background:var(--mc-yellow); border-color:var(--mc-yellow); color:#000; font-weight:600;}
-  .feature-card .btn-outline-dark:hover{filter:brightness(.95); color:#000;}
-  .hero-img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+    h1 {
+      font-size: 1.8em;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      color: #ffeb3b;
+      text-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffc107;
+    }
 
-  
-  .feature-card{border:1px solid #eee; border-radius:.5rem;}
-  .feature-card .thumb{height:140px; background:#eee; border-top-left-radius:.5rem; border-top-right-radius:.5rem; overflow:hidden;}
-  .feature-card .thumb img{width:100%; height:100%; object-fit:cover; display:block;}
-  .feature-card .card-body{min-height:150px;}
+    h2 {
+      font-weight: 400;
+      margin-bottom: 25px;
+      color: #f1f1f1;
+      opacity: 0.8;
+    }
 
-  
-  .footer{background:#fff; border-top:1px solid #e9ecef;}
-  .footer h6{font-weight:700;}
-  .copy{color:var(--mc-muted); font-size:.9rem;}
+    /* --- Buttons --- */
+    button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: none;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+    }
 
-  
-  .rounded-12{border-radius:12px;}
-  .shadow-soft{box-shadow: 0 6px 18px rgba(0,0,0,.08);}  
+    button:hover {
+      background: linear-gradient(90deg, #ff512f, #dd2476);
+      box-shadow: 0 6px 25px rgba(255, 82, 82, 0.4);
+      transform: scale(1.05);
+    }
 
-  
-  @media (min-width:992px){
-    .hero-slide{min-height:420px;}
-  }
-</style>
+    footer {
+      margin-top: 25px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+    }
+
+    /* --- Glow Animation for Footer --- */
+    footer span {
+      color: #00c6ff;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #00c6ff, 0 0 10px #0072ff; }
+      to { text-shadow: 0 0 15px #00c6ff, 0 0 25px #0072ff; }
+    }
+  </style>
 </head>
 <body>
-
-
-<div class="top-strip py-1">
-  <div class="container d-flex align-items-center justify-content-between gap-3">
-    <div class="d-flex align-items-center gap-3">
-      <a class="d-inline-flex align-items-center" href="#">
-        <img class="logo" src="./download.jpg" alt="McDonald's">
-      </a>
-      <div class="d-none d-md-flex align-items-center gap-3">
-        <a href="#">Careers</a>
-        <a href="#">Contact Us</a>
-      </div>
-    </div>
-    <div class="d-flex align-items-center gap-2">
-      <a class="text-dark d-none d-md-inline" href="#"><i class="bi bi-search"></i> Search</a>
-      <a class="text-dark d-none d-md-inline" href="#"><i class="bi bi-geo-alt"></i> Locate Me</a>
-      <a class="btn btn-sm btn-mc" href="#">Order on McDelivery</a>
-    </div>
-  </div>
-  </div>
-
-
-<nav class="navbar navbar-expand-lg bg-white border-bottom">
   <div class="container">
-    <a class="navbar-brand d-lg-none" href="#">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/McDonald%27s_Golden_Arches.svg" alt="Mc" />
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Our Menu</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#menu">Breakfast</a></li>
-            <li><a class="dropdown-item" href="#menu">Beef</a></li>
-            <li><a class="dropdown-item" href="#menu">Chicken &amp; Fish</a></li>
-            <li><a class="dropdown-item" href="#menu">Crispy Chicken</a></li>
-            <li><a class="dropdown-item" href="#menu">Wraps</a></li>
-            <li><a class="dropdown-item" href="#menu">Happy Meals</a></li>
-            <li><a class="dropdown-item" href="#menu">Extra Value Meals</a></li>
-            <li><a class="dropdown-item" href="#menu">Fries &amp; Sides</a></li>
-            <li><a class="dropdown-item" href="#menu">Desserts</a></li>
-            <li><a class="dropdown-item" href="#menu">Beverages</a></li>
-            <li><a class="dropdown-item" href="#menu">McCafé</a></li>
-          </ul>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="#">About Our Food</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Your Right To Know</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Our App</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Family</a></li>
-        <li class="nav-item"><a class="nav-link" href="#trending">Trending Now</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Rounding Up</a></li>
-      </ul>
-      </div>
-    </div>
+    <h1>💡 Assignment Lab 6</h1>
+    <h2>Choose an Option</h2>
+
+    <button onclick="ageCalculator()"> Age Calculator</button>
+    <button onclick="temperatureConverter()">Temperature Conversion</button>
+    <button onclick="bmiCalculator()">BMI Categorization</button>
+    <button onclick="bmiImperial()">BMI (lb/in)</button>
+    <button onclick="guessNumber()">Guess the Number</button>
+    <button onclick="studentGrades()">Student Grade System</button>
+    <button onclick="dailyUtilities()">Daily Utilities Toolkit</button>
   </div>
-</nav>
 
+  <footer>©<span> Bilal Chaudhry js tools</span></footer>
 
-<section class="py-3 py-lg-4 bg-light">
-  <div class="container">
-    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        
-        <div class="carousel-item active">
-          <div class="hero-slide p-3 p-md-4">
-            <img class="hero-img" src="./BIC-25-D.png" alt="Crispy Chicken" referrerpolicy="no-referrer">
-            <div class="position-absolute top-0 start-0 w-100 h-100 hero-overlay"></div>
-            <div class="position-relative text-white d-flex align-items-center h-100">
-              <div class="hero-card p-3 p-md-4 shadow-soft">
-                <h5 class="text-danger mb-1">Baj Gaya Band... Mehngai Ka!</h5>
-                <p class="text-muted mb-2">Crispy Chicken now just Rs. 250 per piece.</p>
-                <a class="btn btn-mc" href="#">Order Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
+  <script>
+    // Exercise 1: Age Calculator
+    function ageCalculator() {
+      let name = prompt("Enter your name:");
+      let birthYear = prompt("Enter your birth year:");
+      let currentYear = new Date().getFullYear();
+      let age = currentYear - birthYear;
 
-       
-        <div class="carousel-item">
-          <div class="hero-slide p-3 p-md-4">
-            <img class="hero-img" src="./BigMac-25-D.png" alt="Big Mac burger" referrerpolicy="no-referrer">
-            <div class="position-absolute top-0 start-0 w-100 h-100 hero-overlay"></div>
-            <div class="position-relative text-white d-flex align-items-center h-100">
-              <div class="hero-card p-3 p-md-4 shadow-soft">
-                <h5 class="mb-1">Beef Up, Price Down!</h5>
-                <p class="text-muted mb-2">The legendary Big Mac Regular Meal is now for just Rs. 995. Valid for a limited time only.</p>
-                <a class="btn btn-mc" href="#">Order Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
+      if (!name || !birthYear || isNaN(birthYear)) {
+        alert("Invalid input. Please enter valid data.");
+      } else if (birthYear > currentYear) {
+        alert("Birth year cannot be in the future.");
+      } else {
+        alert(`${name}, You are ${age} years old and you are ${age >= 18 ? "an Adult" : "a Minor"}.`);
+      }
+    }
 
-        
-        <div class="carousel-item">
-          <div class="hero-slide p-3 p-md-4">
-            <img class="hero-img" src="./Sundae-CB-1170X520.png" alt="Strawberry Sundae" referrerpolicy="no-referrer">
-            <div class="position-absolute top-0 start-0 w-100 h-100 hero-overlay"></div>
-            <div class="position-relative text-white d-flex align-items-center h-100">
-              <div class="hero-card p-3 p-md-4 shadow-soft">
-                <h5 class="mb-1">Berry Sweet News!</h5>
-                <p class="text-muted mb-2">Strawberry Sundae now for just Rs. 350.</p>
-                <a class="btn btn-mc" href="#">Order Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-  </div>
-</section>
+    // Exercise 2: Temperature Conversion
+    function temperatureConverter() {
+      let choice = prompt("Enter 1 for Fahrenheit → Celsius\nEnter 2 for Celsius → Fahrenheit");
 
+      if (choice === "1") {
+        let f = prompt("Enter temperature in Fahrenheit:");
+        if (f === "" || isNaN(f)) {
+          alert("Invalid input!");
+        } else {
+          let c = ((f - 32) / 1.8).toFixed(2);
+          alert(`${f}°F = ${c}°C`);
+        }
+      } else if (choice === "2") {
+        let c = prompt("Enter temperature in Celsius:");
+        if (c === "" || isNaN(c)) {
+          alert("Invalid input!");
+        } else {
+          let f = ((c * 1.8) + 32).toFixed(2);
+          alert(`${c}°C = ${f}°F`);
+        }
+      } else {
+        alert("Invalid choice!");
+      }
+    }
 
-<section class="py-4">
-  <div class="container">
-    <div class="row g-3 g-lg-4">
-      
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="feature-card h-100 bg-white">
-          <div class="thumb">
-            <img src="./mccafe-dsk-en.jpg" alt="McCafé coffee" referrerpolicy="no-referrer">
-          </div>
-          <div class="card-body p-4">
-            <h5 class="card-title">McCafé</h5>
-            <p class="card-text text-muted">Browse our menu for tasty coffee and espresso drinks.</p>
-            <a class="btn btn-mc" href="#">Order Now</a>
-          </div>
-        </div>
-      </div>
-    
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="feature-card h-100 bg-white">
-          <div class="thumb">
-            <img src="./mcdelivery-574x249-en.jpg" alt="McDelivery fries and bag" referrerpolicy="no-referrer">
-          </div>
-          <div class="card-body p-4">
-            <h5 class="card-title">McDelivery</h5>
-            <p class="card-text text-muted">Delivering food at your doorsteps.</p>
-            <a class="btn btn-mc" href="#">Order Now</a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="feature-card h-100 bg-white">
-          <div class="thumb">
-            <img src="./uae-our-app-feature-callout-desktop.jpg" alt="McDonald's App on phone" referrerpolicy="no-referrer">
-          </div>
-          <div class="card-body p-4">
-            <h5 class="card-title">Our App</h5>
-            <p class="card-text text-muted">McDonald's in your pocket.</p>
-            <a class="btn btn-mc" href="#">Download Now</a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="feature-card h-100 bg-white">
-          <div class="thumb">
-            <img src="./item-4.png" alt="Burger menu" referrerpolicy="no-referrer">
-          </div>
-          <div class="card-body p-4">
-            <h5 class="card-title">Our Menu</h5>
-            <p class="card-text text-muted">Our exclusive menu is waiting for you.</p>
-            <a class="btn btn-mc" href="#menu">Order Now</a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-12 col-md-6 col-lg-4" id="trending">
-        <div class="feature-card h-100 bg-white">
-          <div class="thumb">
-            <img src="./item-5.png" alt="McDonald's storefront" referrerpolicy="no-referrer">
-          </div>
-          <div class="card-body p-4">
-            <h5 class="card-title">Trending Now</h5>
-            <p class="card-text text-muted">Find out what's new.</p>
-            <a class="btn btn-outline-dark" href="#">Learn More</a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="feature-card h-100 bg-white">
-          <div class="thumb">
-            <img src="./careers-info-card-1.png" alt="Restaurant crew careers" referrerpolicy="no-referrer">
-          </div>
-          <div class="card-body p-4">
-            <h5 class="card-title">Careers</h5>
-            <p class="card-text text-muted">Be a part of our team.</p>
-            <a class="btn btn-outline-dark" href="#">Apply Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </section>
+    // Exercise 3: BMI Categorization (Metric)
+    function bmiCalculator() {
+      let weight = prompt("Enter your weight in kilograms (kg):");
+      let height = prompt("Enter your height in meters (m):");
 
+      if (!weight || !height || isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+        alert("Invalid input. Please enter valid positive numbers.");
+      } else {
+        let bmi = (weight / (height * height)).toFixed(1);
+        let category =
+          bmi < 18.5 ? "Underweight" :
+          bmi <= 24.9 ? "Normal" :
+          bmi <= 29.9 ? "Overweight" : "Obese";
+        alert(`Your BMI is ${bmi} (${category})`);
+      }
+    }
 
-<footer class="footer pt-4 pb-5 mt-2">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-6 col-md-3">
-        <h6>Our Company</h6>
-        <ul class="list-unstyled small">
-          <li><a class="text-decoration-none text-dark" href="#">Our Community</a></li>
-          <li><a class="text-decoration-none text-dark" href="#">Our Journey</a></li>
-          <li><a class="text-decoration-none text-dark" href="#">Our History</a></li>
-          <li><a class="text-decoration-none text-dark" href="#">Social Impact</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md-3">
-        <h6>Careers</h6>
-        <ul class="list-unstyled small">
-          <li><a class="text-decoration-none text-dark" href="#">Corporate</a></li>
-          <li><a class="text-decoration-none text-dark" href="#">Restaurant</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md-3">
-        <h6>Contact us</h6>
-        <ul class="list-unstyled small">
-          <li><a class="text-decoration-none text-dark" href="#">Suggestion</a></li>
-          <li><a class="text-decoration-none text-dark" href="#">Complaint</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md-3">
-        <h6>NewsRoom</h6>
-        <ul class="list-unstyled small">
-          <li><a class="text-decoration-none text-dark" href="#">Local</a></li>
-        </ul>
-        <div class="d-flex gap-2 mt-2">
-          <a class="text-dark fs-5" href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-          <a class="text-dark fs-5" href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-          <a class="text-dark fs-5" href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-          <a class="text-dark fs-5" href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-        </div>
-      </div>
-    </div>
+    // Exercise 4: BMI Imperial
+    function bmiImperial() {
+      let weight = parseFloat(prompt("Enter your weight in pounds (lb):"));
+      let height = parseFloat(prompt("Enter your height in inches (in):"));
 
-    <div class="d-flex flex-column flex-md-row align-items-center justify-content-between mt-4 pt-3 border-top">
-      <div class="d-flex align-items-center gap-2">
-        <img src="./download.jpg" alt="logo" style="height:16px;">
-        <small class="copy">©2025 McDonald's. All Rights Reserved.</small>
-      </div>
-      <ul class="list-inline m-0 small">
-        <li class="list-inline-item"><a class="text-decoration-none text-dark" href="#">Contact</a></li>
-        <li class="list-inline-item"><a class="text-decoration-none text-dark" href="#">Privacy Policy</a></li>
-        <li class="list-inline-item"><a class="text-decoration-none text-dark" href="#">Terms &amp; Conditions</a></li>
-      </ul>
-    </div>
-  </div>
-</footer>
+      if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+        alert("Invalid input. Please enter positive numbers.");
+        return;
+      }
 
+      let bmi = (weight / (height * height)) * 703;
+      alert(`Your BMI is ${bmi.toFixed(2)}`);
+    }
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    // Exercise 5: Guess the Number
+    function guessNumber() {
+      const randomNumber = Math.floor(Math.random() * 10) + 1;
+      let attempts = 3;
+
+      while (attempts > 0) {
+        let guess = prompt(`Guess the number (1–10). Attempts left: ${attempts}`);
+        if (guess === null) return alert("Game cancelled.");
+
+        guess = parseInt(guess);
+        if (isNaN(guess)) {
+          alert("Please enter a valid number.");
+          continue;
+        }
+
+        if (guess === randomNumber) {
+          alert("🎉 Correct! You guessed the number!");
+          return;
+        } else if (guess > randomNumber) {
+          alert("Too High!");
+        } else {
+          alert("Too Low!");
+        }
+
+        attempts--;
+      }
+
+      alert(`Out of attempts! The number was ${randomNumber}.`);
+    }
+
+    // Exercise 6: Student Grades
+    function studentGrades() {
+      let subjects = ["Math", "English", "Science", "History", "Computer"];
+      let total = 0;
+
+      for (let sub of subjects) {
+        let mark = prompt(`Enter marks for ${sub} (0–100):`);
+        if (mark === null) return alert("Cancelled.");
+        mark = parseFloat(mark);
+
+        if (isNaN(mark) || mark < 0 || mark > 100) {
+          alert("Invalid marks. Please enter numbers between 0 and 100.");
+          sub--;
+          continue;
+        }
+        total += mark;
+      }
+
+      let percentage = total / subjects.length;
+      let grade = percentage >= 80 ? "A" : percentage >= 60 ? "B" : "Fail";
+
+      alert(`Total: ${total}\nPercentage: ${percentage.toFixed(2)}%\nGrade: ${grade}`);
+    }
+
+    // Exercise 7: Daily Utilities
+    function dailyUtilities() {
+      while (true) {
+        let choice = prompt(
+          "🌟 Daily Utilities Toolkit 🌟\n\n" +
+          "1. Format Name\n" +
+          "2. Generate 4-digit OTP\n" +
+          "3. Search City\n" +
+          "4. Show Today's Date\n" +
+          "5. Mini Calculator\n" +
+          "6. Exit\n\n" +
+          "Enter your choice (1–6):"
+        );
+
+        if (choice === null || choice === "6") return alert("Goodbye!");
+
+        switch (choice) {
+          case "1":
+            let name = prompt("Enter your name:");
+            if (name) {
+              let formatted = name
+                .toLowerCase()
+                .split(" ")
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(" ");
+              alert(`Formatted Name: ${formatted}`);
+            }
+            break;
+
+          case "2":
+            alert(`Your 4-digit OTP: ${Math.floor(1000 + Math.random() * 9000)}`);
+            break;
+
+          case "3":
+            let cities = ["Karachi", "Lahore", "Islamabad"];
+            let city = prompt("Enter city name:");
+            alert(cities.includes(city) ? "City Found!" : "City Not Found!");
+            break;
+
+          case "4":
+            let today = new Date();
+            let formattedDate = `${today.getDate().toString().padStart(2, '0')}/${
+              (today.getMonth() + 1).toString().padStart(2, '0')
+            }/${today.getFullYear()}`;
+            alert(`Today's Date: ${formattedDate}`);
+            break;
+
+          case "5":
+            let num1 = parseFloat(prompt("Enter first number:"));
+            let op = prompt("Enter operator (+, -, *, /):");
+            let num2 = parseFloat(prompt("Enter second number:"));
+            if (isNaN(num1) || isNaN(num2)) return alert("Invalid input!");
+            let result;
+            switch (op) {
+              case "+": result = num1 + num2; break;
+              case "-": result = num1 - num2; break;
+              case "*": result = num1 * num2; break;
+              case "/": result = num2 === 0 ? "Error: Division by zero!" : num1 / num2; break;
+              default: result = "Invalid operator!";
+            }
+            alert(`Result: ${result}`);
+            break;
+
+          default:
+            alert("Invalid choice! Enter a number between 1–6.");
+        }
+      }
+    }
+  </script>
 </body>
 </html>
-
-
